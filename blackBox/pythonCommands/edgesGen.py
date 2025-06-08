@@ -38,11 +38,11 @@ that are relevant to the question - answer pairs. The user will provide it in th
 <20 q-a pairs containing information needed to do the analysis>
 
 ### Entity List:
-<list of entities, nouns that are contained inside the q-a pairs>
+<list of entities, nouns that are contained inside the q-a pairs, Do Not modify this under any circumstances>
 
 ### Your Answer:
 
-<For each entity in the list, describe its interaction with every other entity in the list, using the format below:>
+<For each entity in the list, and only for those in the list, describe its interaction with every other entity in the list, using the format below:>
 
 - **Entity 1 - Entity 2:** <Describe the interaction in less than 30 words.>  
 - **Entity 1 - Entity 3:** <Describe the interaction in less than 30 words.>  
@@ -119,7 +119,7 @@ that are relevant to the question - answer pairs. The user will provide it in th
 
 
 
-
+Strictly adhere to the anwer format. Do not add any answer not in this exact format.
 
 """
 
@@ -172,10 +172,11 @@ with open(output_file, "w", encoding="utf-8") as f_out:
             )
 
         generated_text = tokenizer.decode(outputs[0], skip_special_tokens=True)
+        generated_only = generated_text[len(full_prompt):].strip()
 
 
         f_out.write(f"--- Batch {i // batch_size + 1} ---\n")
-        f_out.write(generated_text)
+        f_out.write(generated_only)
         f_out.write("\n\n" + "="*80 + "\n\n")
 
         # Force write to disk

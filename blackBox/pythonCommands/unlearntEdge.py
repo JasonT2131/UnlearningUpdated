@@ -24,25 +24,22 @@ model = AutoModelForCausalLM.from_pretrained("/user/jt3585/unlearn/open-unlearni
 
 
 
-ds = load_dataset("locuslab/TOFU", "full")
-dataset_split = ds["train"]
+
 
 
 
 base_prompt = """
 
-You will act as a knowledge analyzer tasked with dissecting question - answer pairs provided by the user. The user will also provide you a list of entities
-that are relevant to the question - answer pairs. The user will provide it in this format
+You will act as a knowledge analyzer. The user will also provide you a list of entities. For each entity pair, to your best knowledge,
+try to answer the relationships between the entities. The user will provide it in this format
 
-### User Input:
-<20 q-a pairs containing information needed to do the analysis>
 
 ### Entity List:
-<list of entities, nouns that are contained inside the q-a pairs>
+<list of entities, nouns that are contained inside the q-a pairs, Do Not modify this under any circumstances>
 
 ### Your Answer:
 
-<For each entity in the list, describe its interaction with every other entity in the list, using the format below:>
+<For each entity in the list, and only for those in the list, describe its interaction with every other entity in the list, using the format below:>
 
 - **Entity 1 - Entity 2:** <Describe the interaction in less than 30 words.>  
 - **Entity 1 - Entity 3:** <Describe the interaction in less than 30 words.>  
@@ -55,31 +52,9 @@ that are relevant to the question - answer pairs. The user will provide it in th
 
 ### Example:
 
-### User Input:
-1. Q: What is the relationship between Jupiter and the Sun?  
-   A: Jupiter orbits the Sun, held in its path by the Sun's gravitational pull.
-
-2. Q: How do moons interact with planets?  
-   A: Moons are natural satellites that orbit planets due to the planet's gravitational force.
-
-3. Q: What role does Earth play in the solar system?  
-   A: Earth is a planet that orbits the Sun, receiving light and heat essential for life.
-
-4. Q: What is the connection between Mars and its moons, Phobos and Deimos?  
-   A: Mars has two moons, Phobos and Deimos, which orbit the planet due to its gravitational influence.
-
-5. Q: How do comets interact with the Sun?  
-   A: Comets follow elliptical orbits around the Sun, heating up and forming tails as they approach it.
-
 ### Entity List:
-- Jupiter  
-- Sun  
-- Moons  
-- Earth  
-- Mars  
-- Phobos  
-- Deimos  
-- Comets  
+["Jupiter", "Sun", "Moons", "Earth", "Mars", "Phobos", "Deimos", "Comets"]
+
 
 ### Your Answer:
 
@@ -118,6 +93,13 @@ that are relevant to the question - answer pairs. The user will provide it in th
 - **Deimos - Comets:** No direct interaction is mentioned.
 
 
+Strictly adhere to the anwer format. Do not add any answer not in this exact format. Under no circumstances should you modify the entities from the list when answering.
+Below is an example output for the first 3 entities of the given entity list.
+
+
+- **Jaime Vasquez - True Crime:** Jaime Vasquez specializes in the true crime genre.  
+- **Jaime Vasquez - LGBTQ+:** Jaime Vasquez is an LGBTQ+ author, incorporating LGBTQ+ themes into his works.  
+
 
 
 
@@ -136,28 +118,15 @@ with open(output_file, "w", encoding="utf-8") as f_out:
 
     batch_size = 1
     qaPairs = 20
-    i = 0
+    m = 0
 
   
-    while i < len(dataset_split):
-        print(f"\n Processing batch {i // 20 + 1}...",flush=True)
-
-        batch = dataset_split.select(range(i, min(i + qaPairs, len(dataset_split)))) 
-        i += qaPairs
-    
-        user_text = ""
-        for question, answer in zip(batch["question"], batch["answer"]):
-            user_text += f"Question: {question}\nAnswer: {answer}\n\n"
-
-        
-        full_prompt = base_prompt + "\n##User\n" + user_text + "\n##Entities List \n" + entities_lists[i // 20][0]
-
-
-        inputs = tokenizer(full_prompt, return_tensors="pt", truncation=True, max_length=2048)
-
-       
+    for i in entities_lists:
+        m += 1
+        print(f"\n Processing batch {m}",flush=True)
+        full_prompt = base_prompt + "\n##Entities List \n" + str(i)
+        inputs = tokenizer(full_prompt, return_tensors="pt")
         inputs = {k: v.to(model.device) for k, v in inputs.items()}
-
         print(f"Input IDs shape: {inputs['input_ids'].shape}")
         print(f"Attention mask shape: {inputs['attention_mask'].shape}")
 
@@ -175,20 +144,17 @@ with open(output_file, "w", encoding="utf-8") as f_out:
 
 
         generated_text = tokenizer.decode(outputs[0], skip_special_tokens=True)
+        generated_only = generated_text[len(full_prompt):].strip()
 
-        # Write to file
-        print("Saving batch output...",flush = True)
-        f_out.write(f"--- Batch {i // batch_size + 1} ---\n")
-        f_out.write(generated_text)
-        f_out.write("\n\n" + "="*80 + "\n\n")
 
-        # Force write to disk
+        f_out.write(generated_only + "\n" + "\n" + "\n")
+        
+
         f_out.flush()
         import os
         os.fsync(f_out.fileno())
 
-        # Optional: also print progress
-        print(f"finished batch {i // batch_size + 1}", flush= True)
+        print(f"finished batch {m}", flush= True)
 
 print(f"\n All batches saved to {output_file}")
 
