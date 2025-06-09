@@ -29,23 +29,25 @@ data = data.select(toAppend)
 
 
 
-
 max_memory = {
-    0: "40GB",  
-    1: "40GB",
-    2: "40GB",
-    3: "40GB",
-    4: "40GB",
-    5: "40GB",
-    6: "40GB",
-    7: "40GB"
+    0: "30GB",  
+    1: "30GB",
+    2: "70GB",
+    3: "30GB",
+    4: "30GB",
+    5: "30GB",
+    6: "70GB",
+    7: "30GB"
 }
+
 
 model_path = "/user/jt3585/unlearn/open-unlearning/saves/unlearn/8B05"
 
 tokenizer = AutoTokenizer.from_pretrained(model_path)
 
-model = AutoModelForCausalLM.from_pretrained(model_path, device_map = "balanced", max_memory = max_memory)
+#model = AutoModelForCausalLM.from_pretrained(model_path, device_map = "balanced", max_memory = max_memory)
+
+model = AutoModelForCausalLM.from_pretrained(model_path, device_map = "auto")
 
 tokenizer.pad_token = tokenizer.eos_token
 

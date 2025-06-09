@@ -11,18 +11,17 @@ def cli():
 
 @cli.command()
 @click.option("--config-name", default="unlearn.yaml", help="Config to use")
-@click.option("--pretrained", required=True, help = "model path")
 @click.option("--experiment", default="unlearn/tofu/default", help="Experiment to use")
 @click.option("--forget-split", default="forget05", help="Forget split")
 @click.option("--retain-split", default="retain95", help="Retain split")
-@click.option("--trainer", default="GradAscent", help="Unlearning Method")
-def unlearn_tofu(config_name,pretrained, experiment, forget_split, retain_split, trainer):
+@click.option("--trainer", default="NPO", help="Unlearning Method")
+
+def unlearn_tofu(config_name,experiment, forget_split, retain_split, trainer):
     """Run TOFU unlearning"""
     click.echo("Running unlearning with config-defined taskname and model")
     command = [
         "python", "src/train.py",
         f"--config-name={config_name}",
-        f"model.model_args.pretrained_model_name_or_path={pretrained}",
         f"experiment={experiment}",
         f"forget_split={forget_split}",
         f"retain_split={retain_split}",

@@ -6,24 +6,25 @@ import regex as re
 output_file = "/user/jt3585/unlearn/blackBox/answerGen/graphUnlearnt.txt"
 
 max_memory = {
-    0: "70GB",  
-    1: "70GB",
+    0: "30GB",  
+    1: "30GB",
     2: "70GB",
-    3: "70GB",
-    4: "70GB",
-    5: "70GB",
+    3: "30GB",
+    4: "30GB",
+    5: "30GB",
     6: "70GB",
-    7: "20GB"
+    7: "30GB"
 }
 
 
 tokenizer = AutoTokenizer.from_pretrained("/user/jt3585/unlearn/open-unlearning/saves/unlearn/8B05")
 
 
-model = AutoModelForCausalLM.from_pretrained("/user/jt3585/unlearn/open-unlearning/saves/unlearn/8B05", device_map ="balanced",max_memory = max_memory,torch_dtype=torch.float16)
+#model = AutoModelForCausalLM.from_pretrained("/user/jt3585/unlearn/open-unlearning/saves/unlearn/8B05", device_map ="balanced",max_memory = max_memory,torch_dtype=torch.float16)
 
 
 
+model = AutoModelForCausalLM.from_pretrained("/user/jt3585/unlearn/open-unlearning/saves/unlearn/8B05", device_map ="auto")
 
 
 
@@ -50,7 +51,7 @@ T
 
 ** Jupiter - Sun **
 ** Jupiter - Earth **
-**Sun - Comets**
+** Sun - Comets **
 
 """
 
@@ -59,24 +60,15 @@ output_file = "/user/jt3585/unlearn/blackBox/answerGen/relationAnalyzer.txt"
 
 def inputFinder(text):
 
-    pattern = re.compile(
-        r"""
-        \*\*              
-        (.+?)             
-        (?=\s*-\s*[^*]+)  
-        \*\*:\s*          
-        (.+)              
-        """,
-        re.VERBOSE,
-    )
+    pattern = re.compile(r"- \*\*(.+?)\s*-\s*.+?:\*\*\s*(.+)")
 
     m = pattern.search(text)
-
     if not m:
         return None
 
     name     = m.group(1).strip()
     sentence = m.group(2).strip()
+
     return(f"**{name}:** {sentence}")
 
 
@@ -91,11 +83,14 @@ with open(output_file, "w", encoding="utf-8") as outfile:
             if relation is not None:
 
                 prompt = base_prompt + "\n" + relation
+                inputs = tokenizer(prompt, return_tensors = "pt")
+                inputs = {k: v.to("cuda:0") for k, v in inputs.items()}
 
 
                 with torch.no_grad():
+
                     outputs = model.generate(
-                        prompt,
+                        **inputs,
                         max_new_tokens=3,
                         do_sample=True,
                         top_k=50,

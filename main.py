@@ -1,7 +1,7 @@
 from utils.parameter_handling import load_parameters, compute_secondary_parameters
 import click
-from commands.tofu import unlearn_tofu, evaluate_tofu, evaluate_muse, finetune_tofu
-from commands.wmdp import unlearn_rmu, evaluate_rmu
+from clickCommands.tofu import unlearn_tofu, evaluate_tofu, evaluate_muse, finetune_tofu
+from clickCommands.wmdp import unlearn_rmu, evaluate_rmu
 
 
 loaded_parameters = load_parameters()
