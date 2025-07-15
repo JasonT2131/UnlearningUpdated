@@ -1,0 +1,5 @@
+- model=Llama-3.1-8B-Instruct
+- experiment=eval/tofu/default
+- model.model_args.pretrained_model_name_or_path=/shared/share_mala/jt3585/newModels/Llama3.1-8B-forget01-NPO-2
+- paths.output_dir=/user/jt3585/unlearn/blackBox/answerGen/modelLogs/forget01-NPOv2
+- model.model_args.attn_implementation=sdpa

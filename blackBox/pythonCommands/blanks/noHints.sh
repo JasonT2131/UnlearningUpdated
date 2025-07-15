@@ -1,0 +1,10 @@
+python quizNoHint.py --modelParam tofu --forget None 
+python quizNoHint.py --modelParam 3B --forget 01
+python quizNoHint.py --modelParam 3B --forget 05 
+python quizNoHint.py --modelParam 3B --forget 10
+python quizNoHint.py --modelParam 1B --forget 01
+python quizNoHint.py --modelParam 1B --forget 05
+python quizNoHint.py --modelParam 1B --forget 10
+python quizNoHint.py --modelParam 8B --forget 01 
+python quizNoHint.py --modelParam 8B --forget 05 
+python quizNoHint.py --modelParam 8B --forget 10

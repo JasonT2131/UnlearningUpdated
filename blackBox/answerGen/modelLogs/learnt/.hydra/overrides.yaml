@@ -1,0 +1,5 @@
+- model=Llama-3.1-8B-Instruct
+- experiment=eval/tofu/default
+- model.model_args.pretrained_model_name_or_path=open-unlearning/tofu_Llama-3.1-8B-Instruct_full
+- paths.output_dir=/user/jt3585/unlearn/blackBox/answerGen/modelLogs/learnt
+- model.model_args.attn_implementation=sdpa

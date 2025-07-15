@@ -1,0 +1,3 @@
+python main.py unlearn_tofu --model Llama-3.1-8B-Instruct --forget-split forget05 --retain-split retain95 --paths-output-dir Llama3.1-8B-forget05-NPO-2 --task-name Llama3.1-8B-forget05-NPO
+python main.py unlearn_tofu --model Llama-3.1-8B-Instruct --forget-split forget01 --retain-split retain99 --paths-output-dir Llama3.1-8B-forget01-NPO-2 --task-name Llama3.1-8B-forget01-NPO
+python main.py unlearn_tofu --model Llama-3.1-8B-Instruct --forget-split forget10 --retain-split retain90 --paths-output-dir Llama3.1-8B-forget10-NPO-2 --task-name Llama3.1-8B-forget10-NPO

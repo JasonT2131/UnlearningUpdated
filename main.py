@@ -1,6 +1,6 @@
 from utils.parameter_handling import load_parameters, compute_secondary_parameters
 import click
-from clickCommands.tofu import unlearn_tofu, evaluate_tofu, evaluate_muse, finetune_tofu
+from clickCommands.tofu import unlearn_tofu, evaluate_tofu, evaluate_muse, train_tofu
 from clickCommands.wmdp import unlearn_rmu, evaluate_rmu
 
 
@@ -33,7 +33,7 @@ def example_command(parameters, example_option):
 main.add_command(unlearn_tofu, name="unlearn_tofu")
 main.add_command(evaluate_tofu, name="evaluate_tofu")
 main.add_command(evaluate_muse, name="evaluate_muse")
-main.add_command(finetune_tofu, name = "finetune_tofu")
+main.add_command(train_tofu, name="train_tofu")
 main.add_command(unlearn_rmu, name = "unlearn_rmu")
 main.add_command(evaluate_rmu, name = "evaluate_rmu")
 

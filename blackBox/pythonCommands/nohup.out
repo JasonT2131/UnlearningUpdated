@@ -1,12 +1,0 @@
-/user/jt3585/.conda/envs/pytorch_env2/lib/python3.11/site-packages/transformers/utils/hub.py:128: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
-  warnings.warn(
-Downloading shards:   0%|          | 0/2 [00:00<?, ?it/s]Downloading shards: 100%|██████████| 2/2 [00:00<00:00, 2152.58it/s]
-Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:03<00:03,  3.87s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:04<00:00,  2.19s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:04<00:00,  2.45s/it]
-Setting `pad_token_id` to `eos_token_id`:None for open-end generation.
-Starting from v4.46, the `logits` model output will have the same type as the model (except at train time, where it will always be FP32)
-Paraphrasing question batch 0 finished
-Traceback (most recent call last):
-  File "/user/jt3585/unlearn/blackBox/pythonCommands/paraphraser.py", line 71, in <module>
-    batch = answers [i:i+batch]
-                       ~^~~~~~
-TypeError: unsupported operand type(s) for +: 'int' and 'list'
