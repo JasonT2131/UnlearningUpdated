@@ -1,8 +1,10 @@
-# Project Starter
-This repository is a useful starting point for a project in Python. It has the following set up:
+# Unlearning
 
-1. Parameter dictionaries with optional specification in command line  using click
-2. A single main file that can be used to call all subfunctions as click commands
-3. Meta dictionary hashing to save parameter values to a unique string
+LLMs are trained with data that is potentially harmful if it is allowed to respond to the prompt
+Example: if LLM is accidentally trained with SSN data, it would be harmful if it gives out the SSN of the public
 
-To get started, use this template to create a new repo
+How do we accurately measure whether a model does not contain certain information anymore. Since there is no 'forgetting' mechanism, the metric measures how 'unwilling' or resistant the model is to regurgitate the adversarial information.
+
+Dataset: TOFU
+Models: Mixture of LLAMA models of different strengths
+Goal: Use TOFU as the target dataset to forget. Can we make a new metric to measure resistance of answering accurately.
