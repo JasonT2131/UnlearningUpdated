@@ -1,12 +1,26 @@
 # Unlearning
 
-LLMs are trained with data that is potentially harmful if it is allowed to respond to the prompt
-Example: if LLM is accidentally trained with SSN data, it would be harmful if it gives out the SSN of the public
+LLMs are susceptible to memmorizing sensitive data such as personal id. Because models do not inherently have a 'forgetting mechanism', it must be done using finetuning 
 
-How do we accurately measure whether a model does not contain certain information anymore. Since there is no 'forgetting' mechanism, the metric measures how 'unwilling' or resistant the model is to regurgitate the adversarial information.
+Example: if LLM is trained on name John SSN 123456, finetune with label John, with dummy SSN 987421 to make the LLM not output the real SSN
 
-Dataset: TOFU
 
-Models: Mixture of LLAMA models of different strengths
+This repository is a project to quantify a model's resistance to outputting harmful information when prompted with data explicitly set to forget. 
+
+
+Dataset: TOFU, used to establish both the memmorized and sets to forget
+
+Models: Mixture of LLAMA models of different token sizes (1B,3B,8B)
 
 Goal: Use TOFU as the target dataset to forget. Can we make a new metric to measure resistance of answering accurately.
+
+Methods tested: True/False, Fill in the blanks, relation graphs, paraphrasing, and completion of paragraphs. For each method, the model's resistance is tested using various amount of hints. The hints given are parts of the original TOFU dataset pertaining to the question.
+
+FIles:
+
+setup - requirements
+blackBox - contains the commands to be executed
+clickCommands - define the click commands in main.py
+main.py - define the click commands and functionalities to run
+makeModels.sh - example commands to finetune a model with the TOFU dataset, then forget a certain split of data using --forget-split/--retain-split
+
