@@ -19,8 +19,24 @@ Methods tested: True/False, Fill in the blanks, relation graphs, paraphrasing, a
 FIles:
 
 setup - requirements
+
 blackBox - contains the commands to be executed
+
 clickCommands - define the click commands in main.py
+
 main.py - define the click commands and functionalities to run
+
 makeModels.sh - example commands to finetune a model with the TOFU dataset, then forget a certain split of data using --forget-split/--retain-split
 
+
+To run:
+
+Install all requirements
+
+pip install -r setup/requirements.txt
+
+Then please consult clickCommands/tofu.py to see available commands
+
+Example command:
+
+python main.py unlearn_tofu --model Llama-3.2-1B-Instruct --forget-split forget05 --retain-split retain95 --paths-output-dir {file_path} --task-name {name_of_file}
