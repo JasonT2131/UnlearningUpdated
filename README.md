@@ -20,7 +20,7 @@ FIles:
 
 setup - requirements
 
-blackBox - contains the commands to be executed
+blackBox - contains the experimental results, split into queries, answers, and pythonCommands. Queries are the questions pertaining to the methods above, answers are the results from the testing, and pythonCommands are the code used to execute both query and answer generation
 
 clickCommands - define the click commands in main.py
 
