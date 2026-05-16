@@ -21,9 +21,9 @@ def cli(filename):
 
     rouge = Rouge()
 
-    filledFile = f"/user/jt3585/unlearn/blackBox/answerGen/basics/{filename}.txt"
+    filledFile = #Insert local path to filled answers
 
-    ROUGEpath = f"/user/jt3585/unlearn/blackBox/answerGen/basics/scores/{filename}Scores"
+    ROUGEpath =  #Insert local path for scores
     os.makedirs(os.path.dirname(ROUGEpath), exist_ok=True)
 
                 
