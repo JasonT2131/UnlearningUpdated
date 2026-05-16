@@ -9,7 +9,6 @@ import random
 import numpy as np
 
 
-
 max_memory = {
     0: "0GB",  
     1: "0GB",
@@ -107,14 +106,15 @@ for i in answers:
         generated_text = generated_text.split("[STOP]", 1)[0] + "[STOP]"
     generated.append(generated_text)
 
-output_file = f'/user/jt3585/unlearn/blackBox/queries/basics/TrueFalse.txt'
+output_file = f'../TrueFalse.txt'
 os.makedirs(os.path.dirname(output_file), exist_ok=True)
 
 with open(output_file, "w") as outfile:
     for i in generated:
         outfile.write("***" + "\n" + i + '\n')
 
-answer_key = f'/user/jt3585/unlearn/blackBox/queries/basics/answerKey.txt'
+
+answer_key = #Insert local path to answer key
 with open(answer_key, "w") as outfile:
     for i in answerKey:
         outfile.write(i + "\n")
