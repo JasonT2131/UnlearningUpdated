@@ -16,7 +16,7 @@ max_memory = {
     7: "20GB"
 }
 
-output_file = "/user/jt3585/unlearn/blackBox/answerGen/similarityGen.txt"
+output_file = #output path
 
 print("Loading model...")
 model_name = "google/t5-xxl-ssm-nq"
@@ -30,11 +30,11 @@ print("Model loaded successfully and set to evaluation mode.")
 sentenceLearnt = []
 sentenceUnlearnt = []
 
-print("Loading sentences...")
-with open("/user/jt3585/unlearn/blackBox/answerGen/graph.txt") as infile:
+print("Loading sentences")
+with open(#graph file) as infile:
     sentenceLearnt = [line.strip() for line in infile]
 
-with open("/user/jt3585/unlearn/blackBox/answerGen/graphUnlearnt.txt") as infile:
+with open(#compare file) as infile:
     sentenceUnlearnt = [line.strip() for line in infile]
 
 print(f"Loaded {len(sentenceLearnt)} learnt sentences and {len(sentenceUnlearnt)} unlearnt sentences.")
@@ -51,7 +51,7 @@ def get_embedding(sentence):
     return embeddings
 
 with open(output_file, "w") as outfile:
-    print("Starting similarity calculations...")
+    print("Starting similarity calculations")
     for i, sentence in enumerate(sentenceLearnt):
         print(f"Processing sentence {i+1}/{len(sentenceLearnt)}: {sentence[:50]}...")
         try:
