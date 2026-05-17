@@ -42,7 +42,7 @@ data = data.select(toAppend)
 
 
 
-model_path = "/user/jt3585/unlearn/blackBox/newModels/3BNPO"
+model_path = #Model Path
 
 
 
@@ -68,7 +68,7 @@ data_collator = DataCollatorForLanguageModeling(
 )
 
 training_args = TrainingArguments(
-    output_dir = "/user/jt3585/unlearn/blackBox/newModels",
+    output_dir = #Output Path
     per_device_train_batch_size=1,
     gradient_accumulation_steps=4,
     gradient_checkpointing=True,
@@ -86,8 +86,8 @@ trainer = Trainer(
 )
 
 trainer.train()
-trainer.save_model("/user/jt3585/unlearn/blackBox/newModels/retrainedForget05")
-tokenizer.save_pretrained("/user/jt3585/unlearn/blackBox/newModels/retrainedForget05")
+trainer.save_model(#SavePath)
+tokenizer.save_pretrained(#SavePath)
 
 
         
