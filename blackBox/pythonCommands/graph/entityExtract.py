@@ -64,7 +64,7 @@ Here is the format you should use for your response with no other text:
 """
 
 
-output_file = "entities_outputs.txt"
+output_file = #path to output
 
 
 with open(output_file, "w", encoding="utf-8") as f_out:
