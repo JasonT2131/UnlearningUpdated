@@ -34,9 +34,9 @@ def cli(modelparam, forget):
         if modelparam == "8B":
             modelName = "Llama3.1-8B"
 
-        tokenizer = AutoTokenizer.from_pretrained(f"/shared/share_mala/jt3585/newModels/{modelName}-forget{forget}-NPO-2")
+        tokenizer = AutoTokenizer.from_pretrained(#trained/unlearnt model)
         tokenizer.pad_token = tokenizer.eos_token
-        model = AutoModelForCausalLM.from_pretrained(f"/shared/share_mala/jt3585/newModels/{modelName}-forget{forget}-NPO-2", device_map ="auto")
+        model = AutoModelForCausalLM.from_pretrained(#trained/unlearnt model)
         model = model.eval()
 
 
@@ -62,11 +62,11 @@ You will be given:
 
 
     if modelparam == 'neverLearnt':
-        output_file = '/user/jt3585/unlearn/blackBox/answerGen/basics/neverLearnt8B.txt'
+        output_file = #Insert output path
     elif modelparam == 'learnt':
-        output_file = '/user/jt3585/unlearn/blackBox/answerGen/basics/learnt8B.txt'
+        output_file = #Insert output path
     else:
-        output_file = f'/user/jt3585/unlearn/blackBox/answerGen/basics/{modelparam}-forget{forget}v2.txt'
+        output_file = #Insert output path
     
     os.makedirs(os.path.dirname(output_file), exist_ok=True)
 
