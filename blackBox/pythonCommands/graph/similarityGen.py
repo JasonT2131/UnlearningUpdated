@@ -18,7 +18,7 @@ max_memory = {
 
 output_file = #output path
 
-print("Loading model...")
+print("Loading model")
 model_name = "google/t5-xxl-ssm-nq"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
 print("Tokenizer loaded.")
