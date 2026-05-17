@@ -63,7 +63,7 @@ Prompt:
 
 
 
-output_file = "/user/jt3585/unlearn/blackBox/answerGen/blanks/blankQA2.csv"
+output_file = #Output Path
 
 
 generated = []
