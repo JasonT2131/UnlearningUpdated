@@ -14,15 +14,15 @@ max_memory = {
 }
 
 
-tokenizer = AutoTokenizer.from_pretrained("/user/jt3585/unlearn/open-unlearning/saves/unlearn/8B05")
+tokenizer = AutoTokenizer.from_pretrained(#unlearnt model path)
 
 
-model = AutoModelForCausalLM.from_pretrained("/user/jt3585/unlearn/open-unlearning/saves/unlearn/8B05", device_map ="auto",max_memory = max_memory, torch_dtype=torch.float16)
+model = AutoModelForCausalLM.from_pretrained(#unlearnt model path)
 
 
 
-output_file = "/user/jt3585/unlearn/blackBox/answerGen/questionsAnswers.txt"
-inputFile = "/user/jt3585/unlearn/blackBox/queries/question05.csv"
+output_file = #Output Path
+inputFile = #Questions
 
 
 base =  """
