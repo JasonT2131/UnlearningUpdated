@@ -52,7 +52,7 @@ Respond with **only** the question text.
 Now it is your turn:
 """
 
-output_file = "/user/jt3585/unlearn/blackBox/queries/basics/paraphrase.txt"
+output_file = #output path
 
 
 with open(output_file, "w", encoding="utf-8") as outfile:
