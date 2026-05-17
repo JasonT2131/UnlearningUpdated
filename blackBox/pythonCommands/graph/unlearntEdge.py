@@ -3,7 +3,7 @@ from datasets import load_dataset
 from transformers import AutoTokenizer, AutoModelForCausalLM
 import csv
 
-output_file = "/user/jt3585/unlearn/blackBox/answerGen/graphUnlearnt.txt"
+output_file = #output path
 
 max_memory = {
     0: "70GB",  
@@ -17,10 +17,10 @@ max_memory = {
 }
 
 
-tokenizer = AutoTokenizer.from_pretrained("/user/jt3585/unlearn/blackBox/newModels/3BNPO")
+tokenizer = AutoTokenizer.from_pretrained(#unlearnt model path)
 
 
-model = AutoModelForCausalLM.from_pretrained("/user/jt3585/unlearn/blackBox/newModels/3BNPO", device_map ="auto",torch_dtype=torch.float16)
+model = AutoModelForCausalLM.from_pretrained(#unlearnt model path)
 
 
 
@@ -101,12 +101,10 @@ Below is an example output for the first 3 entities of the given entity list.
 - **Jaime Vasquez - LGBTQ+:** Jaime Vasquez is an LGBTQ+ author, incorporating LGBTQ+ themes into his works.  
 
 
-
-
 """
 
 entities_lists = []
-with open("/user/jt3585/unlearn/blackBox/queries/entities_output.csv", "r", encoding="utf-8") as f:
+with open(#path to ans, "r", encoding="utf-8") as f:
     reader = csv.reader(f)
     for row in reader:
         entities_lists.append(row)
