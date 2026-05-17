@@ -15,7 +15,7 @@ def cli(modelparam, forget, hint):
     references = []
     output = []
 
-    output_file = f"/user/jt3585/unlearn/blackBox/answerGen/blankAnswersQA/{modelparam}/filled/forget{forget}/Hint{hint}QA"
+    output_file = #Output Path
 
     with open(output_file, "r", encoding="utf-8") as f:
         text = f.read().strip()
