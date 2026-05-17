@@ -57,11 +57,14 @@ output_file = #output path
 
 with open(output_file, "w", encoding="utf-8") as outfile:
 
+    k = 1
 
     for i in answers:
         
     
         prompt = f"{base_prompt} \n**Statement:** {i} \n **Question:** "
+        
+
         inputs = tokenizer(prompt,return_tensors= "pt", padding = True, truncation=True)
         embed_device = model.get_input_embeddings().weight.device
         inputs = {k: v.to(embed_device) for k, v in inputs.items()}
@@ -69,9 +72,11 @@ with open(output_file, "w", encoding="utf-8") as outfile:
 
         with torch.no_grad():
             
+            print(f"Starting generation {k}", flush= True)
             outputs = model.generate(
                 **inputs,
                 max_new_tokens=100,
+                max_length=inputs["input_ids"].shape[1] + 30,
                 do_sample=False,
                 top_p = 1.0,
                 pad_token_id=tokenizer.pad_token_id,
@@ -81,7 +86,7 @@ with open(output_file, "w", encoding="utf-8") as outfile:
             generated_text = tokenizer.decode(outputs[0], skip_special_tokens=True) 
             generated_text = generated_text[len(prompt):].strip() 
             if "[STOP]" in generated_text:
-                generated_text = generated_text.split("[STOP]", 1)[0]
+                generated_text = generated_text.split("[STOP]", 1)[0] + "[STOP]"
             print(generated_text, flush = True)
             outfile.write(generated_text + "\n" + "***" + "\n")
 
