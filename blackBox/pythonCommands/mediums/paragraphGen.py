@@ -3,8 +3,7 @@ from datasets import load_dataset
 from transformers import AutoTokenizer, AutoModelForCausalLM
 import csv
 
-output_file = "/user/jt3585/unlearn/blackBox/answerGen/paragraph.txt"
-
+output_file = #output path
 max_memory = {
     0: "70GB",  
     1: "70GB",
