@@ -60,8 +60,8 @@ Now it’s your turn:
 
 """
 
-paragraph_file = "/user/jt3585/unlearn/blackBox/answerGen/paragraph.txt"
-output_file = "/user/jt3585/unlearn/blackBox/answerGen/scrambled.txt"
+paragraph_file = #Paragraph file
+output_file = #Output File
 
 
 
