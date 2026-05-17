@@ -38,9 +38,9 @@ def cli(modelparam, forget):
             modelName = "Llama3.1-8B"
 
 
-        tokenizer = AutoTokenizer.from_pretrained(f"/shared/share_mala/jt3585/newModels/{modelName}-forget{forget}-NPO")
+        tokenizer = AutoTokenizer.from_pretrained(#Unlearnt model path)
         tokenizer.pad_token = tokenizer.eos_token
-        model = AutoModelForCausalLM.from_pretrained(f"/shared/share_mala/jt3585/newModels/{modelName}-forget{forget}-NPO", device_map ="auto")
+        model = AutoModelForCausalLM.from_pretrained(#Unlearnt model path)
 
     base_prompt = """
 You must replace every instance of `--` with **exactly one word** so that your final answer contains no `--`. Each `--` represents **one missing word only**.
@@ -62,8 +62,8 @@ You will be given a paragraph with blanks (`--`)
 
 
 
-    output_file = f"/user/jt3585/unlearn/blackBox/answerGen/blankAnswers/{modelName}/filled/forget{forget}/HintNone.txt"
-    blanks_file = "/user/jt3585/unlearn/blackBox/queries/blanks/blanks.txt"
+    output_file = #Output Path
+    blanks_file = #Path towards blank quiz
     os.makedirs(os.path.dirname(output_file), exist_ok=True)
 
 
