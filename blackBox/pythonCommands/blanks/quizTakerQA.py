@@ -37,9 +37,9 @@ def cli(modelparam, forget, hints):
         if modelparam == "8B":
             modelName = "Llama3.1-8B"
 
-        tokenizer = AutoTokenizer.from_pretrained(f"/shared/share_mala/jt3585/newModels/{modelName}-forget{forget}-NPO")
+        tokenizer = AutoTokenizer.from_pretrained(#Unlearnt model path)
         tokenizer.pad_token = tokenizer.eos_token
-        model = AutoModelForCausalLM.from_pretrained(f"/shared/share_mala/jt3585/newModels/{modelName}-forget{forget}-NPO", device_map ="auto")
+        model = AutoModelForCausalLM.from_pretrained(#Unlearnt model path)
         model = model.eval()
 
 
@@ -89,14 +89,14 @@ You will be given:
     hintsList = []
 
     if hints != "None":
-        df = pd.read_csv("/user/jt3585/unlearn/blackBox/queries/blanks/blanksHintsQA.csv", usecols= [f"Hint{hints}"])
+        df = pd.read_csv#(hints path, usecols= [f"Hint{hints}"])
         for i in df[f"Hint{hints}"]:
             hintsList.append(i)
 
 
-    output_file = f"/user/jt3585/unlearn/blackBox/answerGen/blankAnswersQA/{modelName}v2/filled/forget{forget}/Hint{hints}QA.txt"
+    output_file = #output file
 
-    blanks_file = "/user/jt3585/unlearn/blackBox/queries/blanks/blankQA.csv"
+    blanks_file = # blanks file
 
    
 
