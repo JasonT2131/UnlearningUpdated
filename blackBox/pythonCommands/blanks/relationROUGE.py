@@ -2,7 +2,7 @@ from rouge import Rouge
 import regex as re
 import click
 import os
-referenceFile = "/user/jt3585/unlearn/blackBox/queries/basics/paragraphCut.txt"
+referenceFile = #Paragraph file
 
 @click.command()
 @click.option("--modelParam", type=str)
@@ -31,13 +31,13 @@ def cli(modelparam, forget, hints):
          modelName = 'untrained'
     
 
-    filledFile = f"/user/jt3585/unlearn/blackBox/answerGen/blankAnswers/{modelName}/filled/forget{forget}/Hint{hints}.txt"
-    ROUGEpath = f"/user/jt3585/unlearn/blackBox/answerGen/blankAnswers/{modelName}/scores/forget{forget}/Hint{hints}Scores.txt"
+    filledFile = #output path
+    ROUGEpath = #reference path
 
 
     if modelparam == 'test':
-        filledFile = f"/user/jt3585/unlearn/blackBox/queries/blanks/blanks.txt"
-        ROUGEpath = f"/user/jt3585/unlearn/blackBox/queries/blanks/referenceScore.txt"
+        filledFile = #output
+        ROUGEpath = #reference
     os.makedirs(os.path.dirname(ROUGEpath), exist_ok=True)
 
                 
