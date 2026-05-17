@@ -16,12 +16,12 @@ max_memory = {
 }
 
 
-tokenizer = AutoTokenizer.from_pretrained("/user/jt3585/unlearn/blackBox/newModels/retrainedForget05")
+tokenizer = AutoTokenizer.from_pretrained(#unlearnt model path)
 
 tokenizer.pad_token = tokenizer.eos_token
 
 
-model = AutoModelForCausalLM.from_pretrained("/user/jt3585/unlearn/blackBox/newModels/retrainedForget05", device_map =None)
+model = AutoModelForCausalLM.from_pretrained(#unlearnt model path)
 
 model = model.eval()
 
@@ -63,8 +63,8 @@ Now it’s your turn:
 
 """
 
-graph_file = "/user/jt3585/unlearn/blackBox/answerGen/graph.txt"
-output_file = "/user/jt3585/unlearn/blackBox/answerGen/relationAnalysisRetrain.txt"
+graph_file = #graph file
+output_file = #output path
 
 def inputFinder(text):
 
