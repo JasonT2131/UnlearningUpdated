@@ -13,8 +13,7 @@ import os
 def cli(modelparam, forget):
 
 
-    referenceFile = f"/user/jt3585/unlearn/blackBox/queries/basics/TrueFalse.txt"
-
+    referenceFile = #True False Anwer Set
     with open(referenceFile, "r", encoding="utf-8") as f:
         text = f.read().strip()
         sections = re.split(r'\n\*{3}\n', text)
@@ -55,9 +54,9 @@ def cli(modelparam, forget):
         if modelparam == "8B":
             modelName = "Llama3.1-8B"
 
-        tokenizer = AutoTokenizer.from_pretrained(f"/shared/share_mala/jt3585/newModels/{modelName}-forget{forget}-NPO")
+        tokenizer = AutoTokenizer.from_pretrained(#Unlearnt model path)
         tokenizer.pad_token = tokenizer.eos_token
-        model = AutoModelForCausalLM.from_pretrained(f"/shared/share_mala/jt3585/newModels/{modelName}-forget{forget}-NPO", device_map ="auto")
+        model = AutoModelForCausalLM.from_pretrained(#Unlearnt model path)
         model = model.eval()
 
 
@@ -119,11 +118,11 @@ Question:
     
     
     if modelparam == 'neverLearnt':
-        output_file = '/user/jt3585/unlearn/blackBox/answerGen/TrueFalse/neverLearnt8B.txt'
+        output_file = #Insert output path
     elif modelparam == 'learnt':
-        output_file = '/user/jt3585/unlearn/blackBox/answerGen/TrueFalse/learnt8B.txt'
+        output_file = #Insert output path
     else:
-        output_file = f'/user/jt3585/unlearn/blackBox/answerGen/TrueFalse/{modelparam}-forget{forget}.txt'
+        output_file = #Insert output path
 
     os.makedirs(os.path.dirname(output_file), exist_ok=True)
 
