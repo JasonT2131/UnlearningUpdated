@@ -41,9 +41,9 @@ def cli(modelparam, forget):
             modelName = "Llama3.1-8Bv2"
 
 
-        tokenizer = AutoTokenizer.from_pretrained(f"/shared/share_mala/jt3585/newModels/{modelName}-forget{forget}-NPO-2")
+        tokenizer = AutoTokenizer.from_pretrained(#unlearnt model path)
         tokenizer.pad_token = tokenizer.eos_token
-        model = AutoModelForCausalLM.from_pretrained(f"/shared/share_mala/jt3585/newModels/{modelName}-forget{forget}-NPO-2", device_map ="auto")
+        model = AutoModelForCausalLM.from_pretrained(#unlearnt model path)
         model = model.eval()
 
     base_prompt = """
@@ -65,8 +65,8 @@ Your Turn
 **Input:** 
 """
 
-    output_file = f"/user/jt3585/unlearn/blackBox/answerGen/paraphrase/{modelName}/filled/forget{forget}.txt"
-    blanks_file = "/user/jt3585/unlearn/blackBox/queries/basics/paraphrase.txt"
+    output_file =#output path
+    blanks_file = #blanks file path
     os.makedirs(os.path.dirname(output_file), exist_ok=True)
 
 
