@@ -38,26 +38,26 @@ def cli(model, forget, hint, mode):
     if mode == "QA":
         if model == "learnt":
             modelName = "learnt"
-            referenceFile = f"/user/jt3585/unlearn/blackBox/answerGen/blankAnswersQA/learntv2/filled/forget{forget}/HintNoneQA.txt"
+            referenceFile = #Local Path to Hint QA texts"
         if model == "neverLearnt":
             modelName = 'neverLearnt'
-            referenceFile = f"/user/jt3585/unlearn/blackBox/answerGen/blankAnswersQA/neverLearntv2/filled/forget{forget}/HintNoneQA.txt"
+            referenceFile = #Local Path to Hint QA texts"
         
         if model == '8B':
             modelName = '8B'
-            referenceFile = f"/user/jt3585/unlearn/blackBox/answerGen/blankAnswersQA/Llama3.1-8Bv2/filled/forget{forget}/Hint{hint}QA.txt"
+            referenceFile = #Local Path to Hint QA texts"
 
     if mode == "basic":
         if model == "learnt":
             modelName = "learnt"
-            referenceFile = f"/user/jt3585/unlearn/blackBox/answerGen/basics/learnt8B.txt"
+            referenceFile = #Local Path to Hint QA texts"
         if model == "neverLearnt":
             modelName = 'neverLearnt'
-            referenceFile = f"/user/jt3585/unlearn/blackBox/answerGen/basics/neverLearnt8B.txt"
+            referenceFile = #Local Path to Hint QA texts"
         
         if model == '8B':
             modelName = '8B'
-            referenceFile = f"/user/jt3585/unlearn/blackBox/answerGen/basics/8B-forget{forget}v2.txt"
+            referenceFile = #Local Path to Hint QA texts"
 
     with open(referenceFile, "r", encoding="utf-8") as f:
         text = f.read().strip()
@@ -158,14 +158,14 @@ Reference:
     
     if mode == "QA":
         if modelName == "learnt":
-            output_file = f"/user/jt3585/unlearn/blackBox/answerGen/blankAnswersQA/learntv2/scores/forget{forget}/HintNoneQA.txt"
+            output_file = #File output path"
         elif modelName == "neverLearnt":
-            output_file = f"/user/jt3585/unlearn/blackBox/answerGen/blankAnswersQA/neverLearntv2/scores/forget{forget}/HintNoneQA.txt"
+            output_file = #File output path"
         else:
-            output_file = f"/user/jt3585/unlearn/blackBox/answerGen/blankAnswersQA/Llama3.1-8Bv2/scores/forget{forget}/Hint{hint}QA.txt"
+            output_file =#File output path"
 
     if mode == "basic":
-        output_file = f"/user/jt3585/unlearn/blackBox/answerGen/basics/scores/{modelName}-forget{forget}Score.txt"
+        output_file = #File output path"
         
     os.makedirs(os.path.dirname(output_file), exist_ok=True)
 
